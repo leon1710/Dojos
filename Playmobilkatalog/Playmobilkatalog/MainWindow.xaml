@@ -1,0 +1,95 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playmobilkatalog"
+        xmlns:ViewModel="clr-namespace:Playmobilkatalog.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="Playmobilkatalog.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="1027.353">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="341*"/>
+            <ColumnDefinition Width="478*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="0" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="190" BorderThickness="1" BorderBrush="DarkGray" CornerRadius="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image}"/>
+                            <StackPanel Grid.Column="1">
+                                <Label Content="{Binding Description}" Margin="1"/>
+                                <Label Content="{Binding Id}" Margin="1"/>
+                                <Label Content="{Binding NoOfParts}" Margin="1"/>
+                            </StackPanel>
+                            <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding AgeRecommendation}" FontSize="20" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="299" VerticalAlignment="Top" Width="297" Margin="10,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Number" Grid.Column="1" Margin="10,15" Grid.Row="1"/>
+            <Label Content="Bezeichnung" Grid.Column="1" Margin="10,15" Grid.Row="2"/>
+            <Label Content="Teilmenge" Grid.Column="1" Margin="10,15" Grid.Row="3"/>
+            <TextBox Grid.Column="2" Margin="0,20" Grid.Row="1" TextWrapping="Wrap" Text="{Binding CurrentItem.Id, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="2" Margin="0,20" Grid.Row="2" TextWrapping="Wrap" Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="2" Margin="0,20" Grid.Row="3" TextWrapping="Wrap" Text="{Binding CurrentItem.AgeRecommendation, UpdateSourceTrigger=PropertyChanged}" />
+            <Image Grid.Column="0" Grid.Row="0" Source="{Binding CurrentItem.Image}"/>
+
+        </Grid>
+
+        <ItemsControl Grid.Column="2" ItemsSource="{Binding Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <!-- Itemscontrol c = new Itemscontrol; c.ItemTemplate = new DataTemplate()-->
+                <DataTemplate>
+                    <Canvas>
+                    <Border BorderBrush="LightGreen" Width="100" BorderThickness="2" CornerRadius="4">
+                        <!--Blend: Border markieren, Objekte, Doppelklick auf MouseDrag..-->
+                        <i:Interaction.Behaviors>
+                                <ei:MouseDragElementBehavior X="{Binding PosX}" Y="{Binding PosY}" /> <!--Damit es zurückgeschrieben wird-->
+                        </i:Interaction.Behaviors>
+                        <StackPanel>
+                            <Image Source="{Binding Image}"/>
+                            <Label Content="{Binding Description}"/>
+                        </StackPanel>
+                    </Border>
+                    </Canvas>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Top" Value="{Binding PosY}"/>
+                    <Setter Property="Canvas.Left" Value="{Binding PosX}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+    </Grid>
+</Window>
