@@ -5,6 +5,7 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 
 namespace CodingDojo6.ViewModel
 {
@@ -13,6 +14,7 @@ namespace CodingDojo6.ViewModel
         private string ageRec;
         private string description;
         private BitmapImage image;
+        private ObservableCollection<ItemVM> items;
 
         #region props
         public BitmapImage Image
@@ -35,6 +37,19 @@ namespace CodingDojo6.ViewModel
             get { return ageRec; }
             set { ageRec = value; }
         }
+
+        public ObservableCollection<ItemVM> Items
+        {
+            get
+            {
+                return items;
+            }
+
+            set
+            {
+                items = value;
+            }
+        }
         #endregion
 
         public ItemVM(string ageRec, string description, BitmapImage image)
@@ -42,7 +57,10 @@ namespace CodingDojo6.ViewModel
             this.ageRec = ageRec;
             this.description = description;
             this.image = image;
+            //this.items = items;
         }
+
+   
 
     }
 }

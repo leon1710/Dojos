@@ -7,6 +7,7 @@
         xmlns:ViewModel="clr-namespace:CodingDojo6.ViewModel" x:Class="CodingDojo6.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="750">
+    
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
@@ -38,11 +39,55 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            
-            <ListBox Grid.Column="1" Margin="10" />
+            <!--
+            <ListBox Grid.Column="1" Margin="10" ItemsSource="{Binding SelectedCategory.ItemsInCategory}" />
+-->
+            <ItemsControl Grid.Column="1" ItemsSource="{Binding SelectedCategory.ItemsInCategory}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Width="230" Margin="5">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Image}" Height="60" Margin="3"/>
+                                        <Label Content="{Binding Description}" VerticalAlignment="Center" Margin="5,0"/>
+                                        <Label Content="{Binding AgeRec}" FontSize="20" VerticalAlignment="Center" ></Label>
+                                    </StackPanel>
+                                    <Button Content="Buy" HorizontalAlignment="Center" Margin="3" Width="30" Height="20"
+                                            Command="{Binding DataContext.BuyBtn, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}">
+                                        
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
 
-        <ListBox Grid.Row="1" Margin="10"/>
+        <ListBox Grid.Row="1" Margin="10" ItemsSource="{Binding Warenkorb}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        
+                    </StackPanel>                
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" CornerRadius="10" BorderThickness="1">
+                        <Image Source="{Binding Image}" Height="100" Width="120"></Image>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
 
     </Grid>
 </Window>
