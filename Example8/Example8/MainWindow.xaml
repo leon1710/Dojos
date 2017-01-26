@@ -27,16 +27,17 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <!--
-        <DataGrid Grid.Column="1" Margin="10" ItemsSource="{Binding SelectedItem.Load}" AutoGenerateColumns="False">
+        
+        <DataGrid Grid.Column="1" Margin="10"  ItemsSource="{Binding SelectedItem.Load}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn  Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
-                <DataGridTextColumn Header="Weight" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" />
 
             </DataGrid.Columns>
         </DataGrid>
--->
+
+        <!--
         <ItemsControl Grid.Column="1" ItemsSource="{Binding SelectedItem}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -59,6 +60,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        -->
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Label HorizontalAlignment="Right" VerticalAlignment="Center" Content="weight sum:"/>
             <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25"/>

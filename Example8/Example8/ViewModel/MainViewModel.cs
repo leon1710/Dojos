@@ -10,11 +10,17 @@ namespace Example8.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private ObservableCollection<ShipVM> ships;
+        private int weightSum;
 
-        private loadVM selectedItem;
+        private ShipVM selectedItem;
 
         #region
-        public loadVM SelectedItem
+        public int WeightSum
+        {
+            get { return weightSum; }
+            set { weightSum = value; }
+        }
+        public ShipVM SelectedItem
         {
             get { return selectedItem; }
             set { selectedItem = value; RaisePropertyChanged(); }
