@@ -50,6 +50,7 @@ namespace CodingDojo5.Communication
             }
         }
 
+        //Nachricht an alle Clients senden -> kommt von ClientHandler update()
         private void Informer(string arg1, Socket arg2)
         {
             updater(arg1);

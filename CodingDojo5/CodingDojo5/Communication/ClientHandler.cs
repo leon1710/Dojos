@@ -60,6 +60,7 @@ namespace CodingDojo5.Communication
                     Name = msg.Split(':')[0];
                 }
 
+                //nachricht an Server dass an alle gesendet werden soll
                 updater(msg, ClientSock);
             }
             Close();

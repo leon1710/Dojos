@@ -36,6 +36,7 @@ namespace CodingDojo5_Client.Communication
         public void StartReceiving()
         {
             Task.Factory.StartNew(Receive);
+
         }
 
         private void Receive()
