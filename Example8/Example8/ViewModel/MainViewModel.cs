@@ -36,25 +36,52 @@ namespace Example8.ViewModel
             else
             {
                 Server server = new Server(updateGui);
-                Ships = new ObservableCollection<ShipVM>();
-                CreateDemoData();
-                
+                 
             }
+
+            CreateDemoData();
         }
 
         private void CreateDemoData()
         {
-            var Load = new ObservableCollection<loadVM>();
-            Load.Add(new loadVM("Computer", 5, 10));
             Ships = new ObservableCollection<ShipVM>();
-            Ships.Add(new ShipVM("4", Load));
+            Ships.Add(new ShipVM(10,
+                        new ObservableCollection<loadVM>()
+                        {
+                            new loadVM("Computer", 5 ,10),
+                            new loadVM("Playstation",10 ,100),
+                            new loadVM("Laptops", 20 , 500)
+                        }));
+            Ships.Add(new ShipVM(9,
+                        new ObservableCollection<loadVM>()
+                        {
+                            new loadVM("Computer", 5 ,10),
+                            new loadVM("Playstation",10 ,100),
+                            new loadVM("Laptops", 20 , 500)
+                        }));
         }
 
         private void updateGui(string obj)
         {
-            //string[] unformated = obj.Split('@');
-            string[] unformated = obj.Replace("|", "@").Replace(",","@").Split('@');
+            /*
+            //"4@recorder,20000,25000|DVDPlayer,10000,20000|PC,50000,200000";
+            string[] getid = obj.Split('@');
+            int id = int.Parse(getid[0]);
 
+            ObservableCollection<loadVM> load = new ObservableCollection<loadVM>();
+
+            string[] getloads = obj.Split('|');
+            foreach(var cargo in getloads)
+            {
+                string[] cargodata = obj.Split(',');
+                load.Add(new loadVM(cargodata[0], int.Parse(cargodata[1]), int.Parse(cargodata[2])));
+            }
+
+            Ships.Add(new ShipVM(id, load));
+            */
+            
+            string[] unformated = obj.Replace("|", "@").Replace(",","@").Split('@');
+            int id = int.Parse(unformated[0]);
             var loads = new ObservableCollection<loadVM>();
             
 
@@ -65,12 +92,14 @@ namespace Example8.ViewModel
                                     int.Parse(unformated[i + 2])));
             }
             
-            ShipVM newShip = new ShipVM(unformated[0], loads);
+            ShipVM newShip = new ShipVM(id, loads);
             
             App.Current.Dispatcher.Invoke(() =>
             {
                 Ships.Add(newShip);
             });
+
+    
         }
     }
 }

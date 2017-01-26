@@ -15,9 +15,9 @@ namespace ClientConsole.Communication
         byte[] buffer = new byte[512];
         Action<string> updater;
 
-        public Client(Action<string>updater)
+        public Client()
         {
-            this.updater = updater;
+            //this.updater = updater;
             try { 
             TcpClient client = new TcpClient();
             Console.WriteLine("connecting..");
@@ -31,19 +31,10 @@ namespace ClientConsole.Communication
             }
         }
 
+
         public void Send(string ship)
         {
-            int length;
-
-            while (true)
-            {
-                length = clientSocket.Send(buffer);
-                clientSocket.Send(Encoding.UTF8.GetBytes(ship));
-                //ship = Encoding.UTF8.GetString(buffer, 0, length);
-                //updater(ship);
-                Console.WriteLine(ship);
-                Thread.Sleep(5000);
-            }
+            clientSocket.Send(Encoding.UTF8.GetBytes(ship));
 
         }
     }

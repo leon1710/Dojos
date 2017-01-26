@@ -4,17 +4,17 @@ namespace Example8.ViewModel
 {
     public class ShipVM
     {
-        private string shipID;
+        private int shipID;
         private ObservableCollection<loadVM> load;
 
-        public ShipVM(string shipID, ObservableCollection<loadVM> load)
+        public ShipVM(int shipID, ObservableCollection<loadVM> load)
         {
             this.shipID = shipID;
             this.load = load;
         }
         
 
-        public string ShipID
+        public int ShipID
         {
             get { return shipID; }
             set { shipID = value; }
