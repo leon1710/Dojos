@@ -27,7 +27,8 @@ namespace ClientConsole.Communication
             }
             catch
             {
-                updater("Server offline");
+                //updater("Server offline");
+                Console.WriteLine("Keine Verbinung zum Server möglich");
             }
         }
 

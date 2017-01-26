@@ -6,11 +6,20 @@ namespace Example8.ViewModel
     {
         private int shipID;
         private ObservableCollection<loadVM> load;
+        private int weightSum;
 
-        public ShipVM(int shipID, ObservableCollection<loadVM> load)
+        public int WeightSum
+        {
+            get { return weightSum; }
+            set { weightSum = value; }
+        }
+
+
+        public ShipVM(int shipID, ObservableCollection<loadVM> load, int weightSum)
         {
             this.shipID = shipID;
             this.load = load;
+            this.weightSum = weightSum;
         }
         
 

@@ -27,7 +27,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+        <!---
         <DataGrid Grid.Column="1" Margin="10"  ItemsSource="{Binding SelectedItem.Load}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="Name" Binding="{Binding Name}" />
@@ -36,12 +36,12 @@
 
             </DataGrid.Columns>
         </DataGrid>
-
-        <!--
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding SelectedItem}">
+        -->
+        
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding SelectedItem.Load}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Orientation="Vertical">
 
                     </WrapPanel>
                 </ItemsPanelTemplate>
@@ -49,21 +49,28 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Border BorderBrush="Black" BorderThickness="1">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="10">
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding SelectedItem.Name}"></Label>
-                                <Label Content="{Binding SelectedItem.Amount}"></Label>
-                                <Label Content="{Binding SelectedItem.Weight}"></Label>
+                                <Label Content="{Binding Name}"></Label>
+                                <Label Content="{Binding Amount}"></Label>
+                                <Label Content="{Binding Weight}"></Label>
                             </StackPanel>
                         </Border> 
                     </StackPanel> 
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        -->
+        
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Label HorizontalAlignment="Right" VerticalAlignment="Center" Content="weight sum:"/>
-            <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="25"/>
+            <Label Width="100" Height="25" Content="{Binding SelectedItem.WeightSum}" >
+               <!-- <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding WeightSum}" ></Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                -->
+            </Label>
         </StackPanel>
     </Grid>
 </Window>

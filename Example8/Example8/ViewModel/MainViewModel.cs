@@ -10,20 +10,16 @@ namespace Example8.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private ObservableCollection<ShipVM> ships;
-        private int weightSum;
+        //private int weightSum;
 
         private ShipVM selectedItem;
 
         #region
-        public int WeightSum
-        {
-            get { return weightSum; }
-            set { weightSum = value; }
-        }
+        
         public ShipVM SelectedItem
         {
             get { return selectedItem; }
-            set { selectedItem = value; RaisePropertyChanged(); }
+            set { selectedItem = value; RaisePropertyChanged();  }
         }
 
 
@@ -52,19 +48,19 @@ namespace Example8.ViewModel
         {
             Ships = new ObservableCollection<ShipVM>();
             Ships.Add(new ShipVM(10,
-                        new ObservableCollection<loadVM>()
+                        new ObservableCollection<loadVM>() 
                         {
                             new loadVM("Computer", 5 ,10),
                             new loadVM("Playstation",10 ,100),
                             new loadVM("Laptops", 20 , 500)
-                        }));
+                        }, 10 + 100 + 500));
             Ships.Add(new ShipVM(9,
                         new ObservableCollection<loadVM>()
                         {
                             new loadVM("Computer", 5 ,10),
                             new loadVM("Playstation",10 ,100),
                             new loadVM("Laptops", 20 , 500)
-                        }));
+                        }, 10+100+500));
         }
 
         private void updateGui(string obj)
@@ -89,16 +85,17 @@ namespace Example8.ViewModel
             string[] unformated = obj.Replace("|", "@").Replace(",","@").Split('@');
             int id = int.Parse(unformated[0]);
             var loads = new ObservableCollection<loadVM>();
-            
+            int weightSum=0;
 
             for (int i = 1; i < unformated.Length; i = i + 3)
             {
                 loads.Add(new loadVM(unformated[i],
                                     int.Parse(unformated[i + 1]),
                                     int.Parse(unformated[i + 2])));
+                weightSum += int.Parse(unformated[i + 2]);
             }
             
-            ShipVM newShip = new ShipVM(id, loads);
+            ShipVM newShip = new ShipVM(id, loads, weightSum);
             
             App.Current.Dispatcher.Invoke(() =>
             {
