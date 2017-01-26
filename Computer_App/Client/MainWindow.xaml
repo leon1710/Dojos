@@ -1,0 +1,46 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientApp"
+        xmlns:ViewModel="clr-namespace:ClientApp.ViewModel" x:Class="ClientApp.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+    
+
+    <Label Content="Please select your Hardware:" ></Label>
+       
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Hardware" VerticalAlignment="Center"></Label>
+                    <ComboBox   HorizontalAlignment="Right" Margin="10" Width="100" ItemsSource="{Binding Hardware}" SelectedItem="{Binding SelectedHW}"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="0,0,14,0" Content="Menge" VerticalAlignment="Center"></Label>
+                    <ComboBox  Margin="10" ItemsSource="{Binding Menge}" Width="100" SelectedItem="{Binding SelectedTotal}"></ComboBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Button Grid.Row="1" Height="25" Width="100" Content="Send" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Command="{Binding SendBtnClicked}"  ></Button>
+        <Button Grid.Row="1" Height="25" Width="100" Content="Connect" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Command="{Binding ConnectBtnClicked}"></Button>
+    
+    
+    </Grid>
+</Window>

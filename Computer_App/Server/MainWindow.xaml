@@ -1,0 +1,71 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServerApp"
+        xmlns:ViewModel="clr-namespace:ServerApp.ViewModel" x:Class="ServerApp.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Start Server" Width="100" Height="25" Command="{Binding StartBtnClicked}"></Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Label Content="Teile:"></Label>
+                <ListBox Height="200" Margin="10" ItemsSource="{Binding Teile}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Hardware}"></Label>
+                                    <Label Grid.Column="1" Content="{Binding Menge}" ></Label>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label Content="Diff:"></Label>
+                <ListBox Height="200" Margin="10"></ListBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <Label Content="Fehlende Clients"></Label>
+            <ListBox Grid.Column="2" Height="200" Margin="10" ItemsSource="{Binding Clients}">
+                <!--.
+                <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                
+                            </StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                            <Label></Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                -->
+                </ListBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
