@@ -72,5 +72,8 @@
                 -->
             </Label>
         </StackPanel>
+
+        <Button Content="DetailView1" HorizontalAlignment="Left" Margin="10" Grid.Row="1" Width="70" Height="25"></Button>
+        <Button Content="DetailView2" HorizontalAlignment="Right" Margin="10" Grid.Row="1" Width="70" Height="25"></Button>
     </Grid>
 </Window>
