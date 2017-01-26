@@ -51,16 +51,16 @@ namespace Example8.ViewModel
                         new ObservableCollection<loadVM>() 
                         {
                             new loadVM("Computer", 5 ,10),
-                            new loadVM("Playstation",10 ,100),
+                            new loadVM("Playstations",10 ,100),
                             new loadVM("Laptops", 20 , 500)
                         }, 10 + 100 + 500));
             Ships.Add(new ShipVM(9,
                         new ObservableCollection<loadVM>()
                         {
-                            new loadVM("Computer", 5 ,10),
-                            new loadVM("Playstation",10 ,100),
-                            new loadVM("Laptops", 20 , 500)
-                        }, 10+100+500));
+                            new loadVM("Bikes", 200 ,150),
+                            new loadVM("Pens",140 ,20),
+                            new loadVM("CDs", 20 , 500)
+                        }, 200+140+500));
         }
 
         private void updateGui(string obj)
